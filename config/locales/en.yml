@@ -31,3 +31,5 @@
 
 en:
   hello: "Hello world"
+  welcome: "Welcome to our app"
+  signup: "Sign up"
