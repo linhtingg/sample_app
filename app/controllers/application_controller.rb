@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+    # to use all helper methods defined inside SessionsHelper
     include SessionsHelper
     
     def hello
