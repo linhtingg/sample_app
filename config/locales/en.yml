@@ -31,5 +31,25 @@
 
 en:
   hello: "Hello world"
-  welcome: "Welcome to our app"
-  signup: "Sign up"
+
+  Home: "Home"
+  Contact: "Contact"
+  Welcome: "Welcome to our sample_app"
+  Help: "Help"
+  About: "About"
+  Signup: "Sign up now"
+  
+  Header:
+    Users: "Users"
+    Account: "Account"
+    Profile: "Profile"
+    Settings: "Settings"
+    Logout: "Log out"
+
+  Form: 
+    Name: "Name"
+    Password: "Password"
+    Confirmation: "Confirmation Password"
+    Remember me on this computer: "Remember me on this computer"
+    Save changes: "Save changes"
+    Login: "Log in"

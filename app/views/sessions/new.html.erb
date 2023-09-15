@@ -1,5 +1,5 @@
 <% provide(:title, "Log in" ) %>
-    <h1>Log in</h1>
+    <h1><%=t("Form.Login")%></h1>
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
             <%= form_with(url: login_path, scope: :session) do |f| %>
@@ -7,14 +7,14 @@
                 <%= f.label :email %>
                 <%= f.email_field :email, class: 'form-control', autocomplete: 'off' %>
                 
-                <%= f.label :password %>
+                <%= f.label :password, t("Form.Password") %>
                 <%= f.password_field :password, class: 'form-control', autocomplete: 'off' , placeholder: 'write your password'%>
                 
                 <%= f.label :remember_me, class: "checkbox inline" do %>
-                    <%= f.check_box :remember_me %> <span>Remember me on this computer</span>
+                    <%= f.check_box :remember_me %> <span><%=t("Form.Remember me on this computer")%></span>
                 <% end %>
 
-                <%= f.submit "Log in", class: "btn btn-primary" %>
+                <%= f.submit t("Form.Login"), class: "btn btn-primary" %>
 
             <% end %>
             <p>New user? <%= link_to "Sign up now!", signup_path %></p>

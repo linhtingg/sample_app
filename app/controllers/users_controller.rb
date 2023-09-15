@@ -9,6 +9,8 @@ class UsersController < ApplicationController
   end
 
   def create
+    # @user = User.new(params[:user]) 
+    # but since we need to specify which input parameters are permitted or required 
     @user = User.new(user_params)
     if @user.save
       reset_session
@@ -21,8 +23,23 @@ class UsersController < ApplicationController
     end
   end
 
-  # require the params hash to have a user attribute
-  # permit the name, email, password & passwordconfirmation attributes
+  def edit
+    @user = User.find(params[:id])
+  end
+
+  def update
+    @user = User.find(params[:id])
+    if @user.update(user_params)
+      # Handle a successful update
+      flash[:success] = "Profile updated"
+      redirect_to @user
+    else
+      render 'edit', status: :unprocessable_entity
+    end
+  end   
+
+  # raising an error if the :user attribute is missing
+  # returns a version of the params hash with only the permitted attributes
   private
     def user_params
       params.require(:user).permit(:name, :email, :password, :password_confirmation)
