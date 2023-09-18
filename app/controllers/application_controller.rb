@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
     # to use all helper methods defined inside SessionsHelper
     include SessionsHelper
+    include Pagy::Backend
     
     def hello
         render html: "hello, world!"
