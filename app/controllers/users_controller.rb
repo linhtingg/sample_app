@@ -21,6 +21,8 @@ class UsersController < ApplicationController
     end
   end
 
+  # require the params hash to have a user attribute
+  # permit the name, email, password & passwordconfirmation attributes
   private
     def user_params
       params.require(:user).permit(:name, :email, :password, :password_confirmation)
