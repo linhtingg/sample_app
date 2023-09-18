@@ -1,4 +1,8 @@
 class UsersController < ApplicationController
+  # before running edit/update, run the action
+  before_action :logged_in_user, only: [:edit, :update]
+  before_action :correct_user, only: [:edit, :update, :show]
+  
   def new
     @user = User.new
   end
@@ -34,14 +38,32 @@ class UsersController < ApplicationController
       flash[:success] = "Profile updated"
       redirect_to @user
     else
+      # Handle unsuccessful update
       render 'edit', status: :unprocessable_entity
     end
   end   
 
-  # raising an error if the :user attribute is missing
-  # returns a version of the params hash with only the permitted attributes
   private
+    
+    # raising an error if the :user attribute is missing
+    # returns a version of the params hash with only the permitted attributes
     def user_params
       params.require(:user).permit(:name, :email, :password, :password_confirmation)
     end
+
+    # Before filters, confirms a logged-in user.
+    # Redirects to the login form if the user is not logged in.
+		def logged_in_user
+			unless logged_in?
+        store_location
+				flash[:danger] = "Please log in."
+				redirect_to login_url, status: :see_other
+      end
+    end
+
+    # Confirms the correct user.
+		def correct_user
+			@user = User.find(params[:id])
+			redirect_to(root_url, status: :see_other) unless @user == current_user      
+		end
 end
