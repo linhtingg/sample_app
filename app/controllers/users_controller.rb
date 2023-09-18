@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   # before running edit/update, run the action
-  before_action :logged_in_user, only: [:edit, :update, :index]
+  before_action :logged_in_user, only: [:edit, :update, :index, :destroy]
   before_action :correct_user, only: [:edit, :update]
   
   def index
@@ -47,6 +47,12 @@ class UsersController < ApplicationController
     end
   end   
 
+  def destroy
+    User.find(params[:id]).destroy
+    flash[:success] = "User deleted"
+    redirect_to users_path, status: :see_other
+  end
+
   private
     
     # raising an error if the :user attribute is missing
@@ -70,4 +76,10 @@ class UsersController < ApplicationController
 			@user = User.find(params[:id])
 			redirect_to(root_url, status: :see_other) unless @user == current_user      
 		end
+
+    # Confirms an admin user.
+    def admin_user
+      redirect_to(root_url, status: :see_other) unless current_user.admin?
+    end
+ 
 end
