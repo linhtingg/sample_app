@@ -19,7 +19,7 @@
                 <li><%= link_to t(:Help) , help_path %></li>
                 
                 <% if logged_in? %>
-                    <li><%= link_to t("Header.Users") , '#' %></li>
+                    <li><%= link_to t("Header.Users") , users_path %></li>
                     <li class="dropdown">
                         <a href="#" id="account" class="dropdown-toggle">
                             <%= t("Header.Account") %> <b class="caret"></b></a>

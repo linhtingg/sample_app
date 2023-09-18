@@ -1,7 +1,11 @@
 class UsersController < ApplicationController
   # before running edit/update, run the action
-  before_action :logged_in_user, only: [:edit, :update]
-  before_action :correct_user, only: [:edit, :update, :show]
+  before_action :logged_in_user, only: [:edit, :update, :index]
+  before_action :correct_user, only: [:edit, :update]
+  
+  def index
+		@users = User.all
+	end
   
   def new
     @user = User.new
