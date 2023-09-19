@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
   # before running edit/update, run the action
-  before_action :logged_in_user, only: [:edit, :update, :index, :destroy]
-  before_action :correct_user, only: [:edit, :update]
+  before_action :logged_in_user, only: %i[edit update index destroy]
+  before_action :correct_user, only: %i[edit update]
+  before_action :admin_user, only: %i[destroy]
   
   def index
 		# @users = User.paginate(page: params[:page])
@@ -64,11 +65,11 @@ class UsersController < ApplicationController
 
     # Before filters, confirms a logged-in user.
     # Redirects to the login form if the user is not logged in.
-		def logged_in_user
-			unless logged_in?
+    def logged_in_user
+      unless logged_in?
         store_location
-				flash[:danger] = "Please log in."
-				redirect_to login_url, status: :see_other
+        flash[:danger] = "Please log in."
+        redirect_to login_url, status: :see_other
       end
     end
 
@@ -82,5 +83,5 @@ class UsersController < ApplicationController
     def admin_user
       redirect_to(root_url, status: :see_other) unless current_user.admin?
     end
- 
+
 end
