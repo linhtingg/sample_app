@@ -1,7 +1,22 @@
 vi:
-  contact: "Liên hệ"
-  welcome: "Chào mừng đến với chúng tôi"
-  signup_welcome: "fffff"
-  help: "Trợ giúp"
-  about: "Thông tin"
-  signup: "Đăng ký"
+  Home: "Trang chủ"
+  Contact: "Liên hệ"
+  Welcome: "Chào mừng đến với chúng tôi"
+  Help: "Trợ giúp"
+  About: "Thông tin"
+  Signup: "Đăng ký ngay!"
+  
+  Header:
+    Users: "Danh sách người dùng"
+    Account: "Tài khoản"
+    Profile: "Trang cá nhân"
+    Settings: "Cài đặt"
+    Logout: "Đăng xuất"
+
+  Form: 
+    Name: "Họ tên"
+    Password: "Mật khẩu"
+    Confirmation: "Xác nhận mật khẩu"
+    Remember me on this computer: "Lưu đăng nhập"
+    Save changes: "Lưu thay đổi"
+    Login: "Đăng nhập"
