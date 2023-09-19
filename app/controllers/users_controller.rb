@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   # before running edit/update, run the action
+  before_action :find_user, only: %i[show edit update correct_user]
   before_action :logged_in_user, only: %i[edit update index destroy]
   before_action :correct_user, only: %i[edit update]
   before_action :admin_user, only: %i[destroy]
@@ -13,10 +14,7 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
-  def show
-    @user = User.find(params[:id])
-    # debugger
-  end
+  def show; end
 
   def create
     # @user = User.new(params[:user]) 
@@ -33,12 +31,9 @@ class UsersController < ApplicationController
     end
   end
 
-  def edit
-    @user = User.find(params[:id])
-  end
+  def edit;  end
 
   def update
-    @user = User.find(params[:id])
     if @user.update(user_params)
       # Handle a successful update
       flash[:success] = "Profile updated"
@@ -56,7 +51,6 @@ class UsersController < ApplicationController
   end
 
   private
-    
     # raising an error if the :user attribute is missing
     # returns a version of the params hash with only the permitted attributes
     def user_params
@@ -75,7 +69,6 @@ class UsersController < ApplicationController
 
     # Confirms the correct user.
 		def correct_user
-			@user = User.find(params[:id])
 			redirect_to(root_url, status: :see_other) unless @user == current_user      
 		end
 
@@ -84,4 +77,7 @@ class UsersController < ApplicationController
       redirect_to(root_url, status: :see_other) unless current_user.admin?
     end
 
+    def find_user
+      @user=User.find(params[:id])
+    end
 end
