@@ -17,7 +17,7 @@
             <ul class="nav navbar-nav navbar-right">
                 <li><%= link_to t(:Home) , root_path %></li>
                 <li><%= link_to t(:Help) , help_path %></li>
-                
+
                 <% if logged_in? %>
                     <li><%= link_to t("Header.Users") , users_path %></li>
                     <li class="dropdown">
@@ -30,7 +30,7 @@
                                 <li><%= link_to t("Header.Logout") , logout_path, data: { "turbo-method": :delete } %> </li>
                             </ul>
                     </li>
-                
+
                     <% else %>
                         <li>
                             <%= link_to t("Form.Login") , login_path %>
