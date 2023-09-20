@@ -21,7 +21,9 @@ class UsersController < ApplicationController
     if @user.save
       @user.send_activation_email
       flash[:info] = "Please check your email to activate your account."
-      redirect_to root_url
+      # redirect_to root_url
+      # alter the redirect link so user will be automatically activated
+      redirect_to edit_account_activation_url(id: @user.activation_token, email:@user.email)
       else
       render :new, status: :unprocessable_entity
     end
