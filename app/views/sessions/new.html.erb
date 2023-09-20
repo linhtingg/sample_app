@@ -8,6 +8,7 @@
 				<%= f.email_field :email, class: 'form-control', autocomplete: 'off' %>
 
 				<%= f.label :password, t("Form.Password") %>
+				<%= link_to "(forgot password)", new_password_reset_path %>
 				<%= f.password_field :password, class: 'form-control', autocomplete: 'off' , placeholder: 'write your password'%>
 
 				<%= f.label :remember_me, class: "checkbox inline" do %>
