@@ -1,4 +1,7 @@
 class User < ApplicationRecord
+  # User/Micropost Associations
+  has_many :microposts, dependent: :destroy
+
   # Create an accessible attribute
   attr_accessor :remember_token, :activation_token, :reset_token
   before_save   :downcase_email
