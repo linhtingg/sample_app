@@ -17,15 +17,13 @@ class UsersController < ApplicationController
   def show; end
 
   def create
-    # @user = User.new(params[:user]) 
-    # but since we need to specify which input parameters are permitted or required 
     @user = User.new(user_params)
     if @user.save
-      reset_session
-      log_in @user
-      
-      flash[:success] = "Welcome to the Sample App!"
-      redirect_to @user
+      @user.send_activation_email
+      flash[:info] = "Please check your email to activate your account."
+      # redirect_to root_url
+      # alter the redirect link so user will be automatically activated
+      redirect_to edit_account_activation_url(id: @user.activation_token, email:@user.email)
       else
       render :new, status: :unprocessable_entity
     end
