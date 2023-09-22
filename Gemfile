@@ -9,6 +9,8 @@ gem "sqlite3", "~> 1.4"
 gem "faker", "2.21.0"
 
 gem 'pagy', '~> 6.0'
+gem "active_storage_validations", "0.9.8"
+gem "image_processing", "1.12.2"
 
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", "~> 5.0"
@@ -38,9 +40,6 @@ gem "bootsnap", require: false
 gem "bootstrap-sass", "3.4.1"
 gem "sassc-rails", "2.1.2"
 gem "sprockets-rails", "3.4.2"
-
-# Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
-# gem "image_processing", "~> 1.2"
 
 group :development, :test do
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
