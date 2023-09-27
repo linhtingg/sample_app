@@ -22,10 +22,10 @@ class SessionsController < ApplicationController
       render :new, status: :unprocessable_entity
     end
   end
-  
+
   def destroy
-    log_out if logged_in? # avoid exception 
+    log_out if logged_in? # avoid exception
     redirect_to root_url, status: :see_other
   end
-    
+
 end

@@ -6,9 +6,9 @@ class UsersController < ApplicationController
   before_action :admin_user, only: %i[destroy]
 
   def index
-		# @users = User.paginate(page: params[:page])
+    # @users = User.paginate(page: params[:page])
     @pagy, @users = pagy(User.all, items: 15)
-	end
+  end
 
   def new
     @user = User.new
@@ -60,9 +60,9 @@ class UsersController < ApplicationController
     end
 
     # Confirms the correct user.
-		def correct_user
-			redirect_to(root_url, status: :see_other) unless @user == current_user
-		end
+    def correct_user
+      redirect_to(root_url, status: :see_other) unless @user == current_user
+    end
 
     # Confirms an admin user.
     def admin_user
