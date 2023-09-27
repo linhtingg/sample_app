@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   # before running edit/update, run the action
   before_action :find_user, only: %i[show edit update correct_user]
-  before_action :logged_in_user, only: %i[edit update index destroy]
+  before_action :logged_in_user, only: %i[edit update index destroy following followers]
   before_action :correct_user, only: %i[edit update]
   before_action :admin_user, only: %i[destroy]
 
@@ -51,6 +51,21 @@ class UsersController < ApplicationController
     flash[:success] = "User deleted"
     redirect_to users_path, status: :see_other
   end
+
+  def following
+    @title = "Following"
+    @user = User.find(params[:id])
+    @pagy, @users = pagy(@user.following, items: 15)
+    render 'show_follow', status: :unprocessable_entity
+  end
+
+  def followers
+    @title = "Followers"
+    @user = User.find(params[:id])
+    @pagy, @users = pagy(@user.followers, items: 15)
+    render 'show_follow', status: :unprocessable_entity
+  end
+
 
   private
     # raising an error if the :user attribute is missing

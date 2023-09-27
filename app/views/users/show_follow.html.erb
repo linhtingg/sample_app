@@ -1,0 +1,43 @@
+<% provide(:title, @title) %>
+  <div class="row">
+    <aside class="col-md-4">
+      <section class="user_info">
+        <%= gravatar_for @user %>
+          <h1>
+            <%= @user.name %>
+          </h1>
+          <span>
+            <%= link_to "View my profile" , @user %>
+          </span>
+          <span><strong>Microposts:</strong>
+            <%= @user.microposts.count %>
+          </span>
+      </section>
+
+      <!-- Show the user is following/followed by how many users -->
+      <section class="stats">
+        <%= render 'shared/stats' %>
+        <!-- Mini icon for 10 first following/followed users -->
+        <% if @users.any? %>
+          <div class="user_avatars">
+            <% @users.limit(10).each do |user| %>
+              <%= link_to gravatar_for(user, size: 30), user %>
+            <% end %>
+          </div>
+        <% end %>
+      </section>
+    </aside>
+
+    <!-- Show list of all the following/followed users -->
+    <div class="col-md-8">
+      <h3>
+        <%= @title %>
+      </h3>
+      <% if @users.any? %>
+        <ul class="users follow">
+          <%= render @users %>
+        </ul>
+        <%== pagy_bootstrap_nav(@pagy) %>
+      <% end %>
+    </div>
+  </div>
