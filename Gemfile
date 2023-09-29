@@ -5,7 +5,8 @@ ruby "3.1.2"
 gem "rails-i18n"
 gem "config"
 gem "rails", "~> 7.0.4"
-gem "sqlite3", "~> 1.4"
+# gem "sqlite3", "~> 1.4"
+gem "pg", "~>1.5.4"
 gem "faker", "2.21.0"
 
 gem 'pagy', '~> 6.0'
